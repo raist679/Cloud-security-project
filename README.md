@@ -77,34 +77,33 @@ SSH into the control node and follow the steps below:
 
 `$ ansible-playbook filebeat-playbook.yml`
 
-```
 ---
-  - name: filebeat installer
-    hosts: webservers
-    become: true
-    tasks:
-    
-    - name: download filebeat
-      shell: curl -L -O  https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.6.1-amd64.deb
-            
-    - name: install filebeat
-      shell: dpkg -i filebeat-7.6.1-amd64.deb 
+- name: Installing and Launch Filebeat
+  hosts: webservers
+  become: yes
+  tasks:
+    # Use command module
+  - name: Download filebeat .deb file
+    command: curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.4.0-amd64.deb
 
-    - name: Copy filebeat configuration
-      copy:
-       src: /etc/ansible/files/filebeat-configuration.yml
-       dest: /etc/filebeat/filebeat.yml
-       owner: root
-       group: root
-       mode: '0600'
-       backup: yes
+    # Use command module
+  - name: Install filebeat .deb
+    command: dpkg -i filebeat-7.4.0-amd64.deb
 
-    - name: restart filebeat
-      shell: filebeat modules enable system
-   
-    - name: filebeat setup
-      shell: filebeat setup
-  
-    - name: filebeat -e
-      shell: filebeat -e &
-      ```
+    # Use copy module
+  - name: Copy filebeat.yml
+    copy:
+      src: /etc/ansible/files/filebeat-config.yml
+      dest: /etc/filebeat/filebeat.yml
+
+    # Use command module
+  - name: enable and configure system module
+    command: filebeat modules enable system
+
+    # Use command module
+  - name: Setup filebeat
+    command: filebeat setup
+
+    # Use command module
+  - name: Start filebeat service
+    command: service filebeat start
