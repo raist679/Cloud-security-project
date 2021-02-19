@@ -75,35 +75,5 @@ SSH into the control node and follow the steps below:
 - Update the hosts file to include webservers 10.0.1.7, 10.0.1.8, 10.0.1.9, 10.0.1.10
 - Run the playbook, and navigate to Kibana to check that the installation worked as expected.
 
-`$ ansible-playbook filebeat-playbook.yml`
 
----
-- name: Installing and Launch Filebeat
-  hosts: webservers
-  become: yes
-  tasks:
-    # Use command module
-  - name: Download filebeat .deb file
-    command: curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.4.0-amd64.deb
 
-    # Use command module
-  - name: Install filebeat .deb
-    command: dpkg -i filebeat-7.4.0-amd64.deb
-
-    # Use copy module
-  - name: Copy filebeat.yml
-    copy:
-      src: /etc/ansible/files/filebeat-config.yml
-      dest: /etc/filebeat/filebeat.yml
-
-    # Use command module
-  - name: enable and configure system module
-    command: filebeat modules enable system
-
-    # Use command module
-  - name: Setup filebeat
-    command: filebeat setup
-
-    # Use command module
-  - name: Start filebeat service
-    command: service filebeat start
