@@ -3,11 +3,7 @@ Cybersecurity cloud security
 
 ## Automated ELK Stack Deployment
 
-The files in this repository were used to configure the network depicted below.
-
-![Diagram](Diagrams/Diagram.png)
-
-These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select portions of the playbook file may be used to install only certain pieces of it, such as Filebeat.
+The files in this repository have been created and tested to generate a live ELK stack deployment in Azure. The files can be used to recreate the deployment in the accompanying diagram.
 
 [filebeat-playbook.yml](Ansible/filebeat-playbook.yml)
 
@@ -41,7 +37,7 @@ _Note: Use the [Markdown Table Generator](http://www.tablesgenerator.com/markdow
 | Web-2                 | VM         | 10.0.0.10  |Linux ubuntu 18.04|
 | Web-3                 | VM         | 10.0.0.11  |Linux ubuntu 18.04|
 | DVWA-VM4              | VM         | 10.0.1.10  |Linux ubuntu 18.04|
-| ELK VM                | ElkStack   | 10.0.1.12  |Linux ubuntu 18.04|
+| ELK VM                | ElkStack   | 10.1.0.4   |Linux ubuntu 18.04|
 
 ### Access Policies
 
