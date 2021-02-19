@@ -5,26 +5,15 @@ Cybersecurity cloud security
 
 The files in this repository have been created and tested to generate a live ELK stack deployment in Azure. The files can be used to recreate the deployment in the accompanying diagram.
 
-[filebeat-playbook.yml](Ansible/filebeat-playbook.yml)
-
-This document contains the following details:
-- Description of the Topology
-- Access Policies
-- ELK Configuration
-  - Beats in Use
-  - Machines Being Monitored
-- How to Use the Ansible Build
-
-
 ### Description of the Topology
 
-The main purpose of this network is to expose a load-balanced and monitored instance of DVWA, the D*mn Vulnerable Web Application.
+This network is configured to run  a load-balanced and monitored instance of DVWA, the D*mn Vulnerable Web Application.
 
-Load balancing ensures that the application will be highly available, in addition to restricting access to the network.
-- Load balancers protect the servers from a denial of service attack. A load balancer distributes traffic amongst the servers. One benefit of using a jump box is that it protects your virtual machines from publix exposure.
+Load balancing ensures that the application will have high availablity. It also aids in restricting access to the network.
+- The load balancers help protect the servers from a denial of service attack. The load balancer distributes traffic amongst the backend servers.
 
 Integrating an ELK server allows users to easily monitor the vulnerable VMs for changes to the log files and system performance.
-- log files monitored by Filebeat
+- The log files are monitored by Filebeat
 
 
 The configuration details of each machine may be found below.
