@@ -17,7 +17,6 @@ Integrating an ELK server allows users to easily monitor the vulnerable VMs for 
 
 
 The configuration details of each machine may be found below.
-_Note: Use the [Markdown Table Generator](http://www.tablesgenerator.com/markdown_tables) to add/remove values from the table_.
 
 | Name                  | Function   | IP Address | Operating System |
 |-----------------------|------------|------------|------------------|
@@ -25,55 +24,48 @@ _Note: Use the [Markdown Table Generator](http://www.tablesgenerator.com/markdow
 | Web-1                 | VM         | 10.0.0.9   |Linux ubuntu 18.04|
 | Web-2                 | VM         | 10.0.0.10  |Linux ubuntu 18.04|
 | Web-3                 | VM         | 10.0.0.11  |Linux ubuntu 18.04|
-| DVWA-VM4              | VM         | 10.0.1.10  |Linux ubuntu 18.04|
 | ELK VM                | ElkStack   | 10.1.0.4   |Linux ubuntu 18.04|
 
 ### Access Policies
 
-The machines on the internal network are not exposed to the public Internet. 
+The VM's comprising the internal network are not exposed to the public. 
 
-Only the Jumpbox machine can accept connections from the Internet. Access to this machine is only allowed from the following IP addresses:
-- 72.84.225.151
+Only the jump box provisioner can accept outside connections. Access to this machine is only allowed from the following IP address:
+- 47.233.13.203
 
 Machines within the network can only be accessed by Port 22.
-- 10.0.1.4
+- 10.0.0.4
 
 A summary of the access policies in place can be found in the table below.
 
 | Name     | Publicly Accessible | Allowed IP Addresses |
 |----------|---------------------|----------------------|
-| Jump Box |     No              | 72.84.225.151        |
-| DVWA-VMs |     No              | 10.0.1.4             |
-| ELK Stack|     No              | 10.0.1.4             |
+| Jump Box |     No              | 40.83.216.225        |
+| DVWA-VMs |     No              | 10.0.0.4             |
+| ELK Stack|     No              | 10.0.0.4             |
 
 ### Elk Configuration
 
-Ansible was used to automate configuration of the ELK machine. No configuration was performed manually, which is advantageous because...
-- Ansible can be run from the command line and will ensure our provisioning scripts run identically everywhere.
+Ansible is used to automate the configuration of the ELK stack. No configuration was performed manually.
 
 The playbook implements the following tasks:
-* Change the memory on the ELK VM
+* Change to the memory setting on the ELK VM
 * Install docker.io
 * Install python-pip
 * Install docker python module
 * Download and launch a docker elk stack
 
-The following screenshot displays the result of running `docker ps` after successfully configuring the ELK instance.
-
-![Sebp/Elk Running](Images/ELK.png)
-
 ### Target Machines & Beats
 This ELK server is configured to monitor the following machines:
-* 10.0.1.7
-* 10.0.1.8
-* 10.0.1.9
-* 10.0.1.10
+* 10.0.0.9
+* 10.0.0.10
+* 10.0.0.11
 
-We have installed the following Beat on these machines:
+The following beat was installed on these machines:
 - filebeat-7.6.1-amd64.deb
 
-This Beat allow us to collect the following information from each machine:
-- Filebeat is used to send your log files to kibana. Filebeat monitors and collects log events on specificed servers.
+Filebeat allow us to collect the following information from each machine:
+-  Filebeat monitors and collects log events on specificed servers. It is being used in this configuration to collect and send log files to kibana.
 
 ### Using the Playbook
 In order to use the playbook, you will need to have an Ansible control node already configured. Assuming you have such a control node provisioned: 
